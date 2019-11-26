@@ -50,7 +50,7 @@ class RentalsController < ApplicationController
   end
 
   def show
-    @rental = Rental.find(params[:id])
+    @rental = RentalPresenter.new(Rental.find(params[:id]))
   end
 
   def search
