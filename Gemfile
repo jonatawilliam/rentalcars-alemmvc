@@ -39,6 +39,7 @@ end
 
 group :test do
   gem 'capybara'
+  # altera barra de progresso de testes
   gem 'fuubar'
 end
 

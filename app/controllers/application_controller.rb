@@ -8,4 +8,13 @@ class ApplicationController < ActionController::Base
   def current_subsidiary
     current_user.subsidiary if current_user.user?
   end
+
+  def current_user
+    UserPresenter.new(super || NilUser.new)
+  end
+
+  def user_signed_in?
+    # persisted se tem ID ou não
+    current_user.persisted?
+  end
 end
