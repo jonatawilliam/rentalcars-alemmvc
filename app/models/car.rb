@@ -5,4 +5,10 @@ class Car < ApplicationRecord
   validates :car_km, presence: true
   validates :color, presence: true
   validates :license_plate, presence: true
+
+  def daily_rate
+    category.daily_rate +
+    category.third_party_insurance +
+    category.car_insurance
+  end
 end

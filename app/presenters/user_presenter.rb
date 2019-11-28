@@ -21,6 +21,7 @@ class UserPresenter < Draper::Decorator
   #     object.public_send(method, *args, &block)
   #   end
 
-  #   def respond_to_missing?
+  #   def respond_to_missing?(name, include_private = false)
+  #     object.respond_to?(name, include_private)
   #   end
 end
