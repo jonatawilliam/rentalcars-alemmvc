@@ -1,6 +1,6 @@
 class Rental < ApplicationRecord
   before_create :generate_reservation_code
-  enum status: { scheduled: 0, in_review: 5, ongoing: 10, finalized: 15 }
+  enum status: { scheduled: 0, in_review: 5, ongoing: 10, finalized: 15, canceled: 20 }
   belongs_to :client
   belongs_to :category
   belongs_to :subsidiary
@@ -9,6 +9,8 @@ class Rental < ApplicationRecord
   validate :cars_available, on: :create
   has_many :rental_items
   accepts_nested_attributes_for :rental_items
+
+  scope :overpast, -> { scheduled.where("start_date < ?", Time.zone.now) }
 
   def calculate_price_projection
     return 0 unless start_date && end_date && category
